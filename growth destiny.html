@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -13,435 +12,528 @@
 <style>
 
 :root{
-    --light:#EEFABD;
-    --green:#8BA892;
-    --blue:#6984A9;
-    --navy:#263B6A;
+--light:#EEFABD;
+--green:#8BA892;
+--blue:#6984A9;
+--navy:#263B6A;
+--bg-gray:#f8fafc;
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-    background:white;
-    color:#263B6A;
+background:white;
+color:var(--navy);
+overflow-x:hidden;
 }
 
 /* NAVBAR */
 
 nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 8%;
-    border-bottom:1px solid #eee;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:white;
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+transition:.3s;
 }
 
-/* Side-by-side logo and text */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Space between image and text */
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--navy);
+nav.scrolled{
+padding:12px 8%;
+box-shadow:0 5px 20px rgba(0,0,0,.05);
 }
 
-.logo img {
-    height: 45px; /* Size of the logo in the nav */
-    width: auto;
-    object-fit: contain;
-    border-radius: 6px;
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:700;
+font-size:22px;
+text-decoration:none;
+color:var(--navy);
+}
+
+.logo img{
+width:40px;
+height:40px;
+border-radius:50%;
+object-fit:cover;
 }
 
 nav ul{
-    display:flex;
-    gap:40px;
-    list-style:none;
+display:flex;
+gap:40px;
+list-style:none;
 }
 
 nav ul a{
-    text-decoration:none;
-    color:#263B6A;
-    font-weight:500;
-    transition:0.3s;
+text-decoration:none;
+color:var(--navy);
+font-weight:500;
+position:relative;
 }
 
-nav ul a:hover{
-    color:var(--green);
+nav ul a::after{
+content:'';
+width:0;
+height:2px;
+background:var(--green);
+position:absolute;
+left:0;
+bottom:-4px;
+transition:.3s;
+}
+
+nav ul a:hover::after{
+width:100%;
 }
 
 /* HERO */
 
 .hero{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:0 20px;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding-top:120px;
+
+background:
+radial-gradient(circle at top right,rgba(238,250,189,.5),transparent 40%),
+radial-gradient(circle at bottom left,rgba(105,132,169,.1),transparent 40%);
 }
 
 .hero h1{
-    font-size:48px;
-    margin-bottom:20px;
-    line-height:1.2;
+font-size:56px;
+line-height:1.2;
+margin-bottom:20px;
 }
 
 .gradient{
-    background:linear-gradient(90deg,#6984A9,var(--green));
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+background:linear-gradient(90deg,var(--blue),var(--green));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .hero p{
-    max-width:650px;
-    margin:auto;
-    opacity:0.8;
-    margin-bottom:40px;
+max-width:650px;
+margin:auto;
+opacity:.8;
+margin-bottom:35px;
 }
 
 /* BUTTONS */
 
-.btn {
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-block;
-    margin: 5px;
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+.btn{
+padding:14px 32px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+display:inline-block;
+margin:10px;
+transition:.3s;
 }
 
-/* Gradient Primary Button */
-.btn-primary {
-    background: linear-gradient(90deg, var(--blue), var(--green));
-    background-size: 200% auto; /* Makes the gradient look richer */
-    color: white;
-    border: none;
+.btn-primary{
+background:linear-gradient(90deg,var(--blue),var(--green));
+color:white;
 }
 
-.btn-primary:hover {
-    background-position: right center; /* Smoothly shifts the colors on hover */
-    color: white;
-    transform: translateY(-3px); /* Lifts the button up slightly */
-    box-shadow: 0 8px 20px rgba(105, 132, 169, 0.4); /* Adds a soft glowing shadow */
+.btn-primary:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
 
-/* Outline Button */
-.btn-outline {
-    border: 2px solid var(--blue);
-    color: var(--navy);
-    background: transparent;
+.btn-outline{
+border:2px solid var(--blue);
+color:var(--navy);
 }
 
-.btn-outline:hover {
-    background: linear-gradient(90deg, var(--blue), var(--green));
-    border-color: transparent; /* Hides the border when hovered */
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(105, 132, 169, 0.4);
+.btn-outline:hover{
+background:var(--blue);
+color:white;
 }
+
+/* SECTIONS */
+
+.section-padding{
+padding:120px 10%;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+margin-bottom:20px;
+}
+
+.section-subtitle{
+text-align:center;
+max-width:600px;
+margin:auto;
+margin-bottom:60px;
+opacity:.8;
+}
+
 /* ABOUT */
 
 .about{
-    padding:120px 10%;
-    text-align:center;
-    background:#f8fafc;
+background:var(--bg-gray);
+text-align:center;
 }
 
-.about h2{
-    font-size:36px;
-    margin-bottom:20px;
+/* STATS */
+
+.stats{
+background:var(--navy);
+color:white;
+display:flex;
+justify-content:center;
+gap:60px;
+flex-wrap:wrap;
+padding:60px 10%;
 }
 
-.about p{
-    max-width:700px;
-    margin:auto;
-    line-height:1.6;
+.stat-num{
+font-size:42px;
+color:var(--light);
+font-weight:700;
 }
 
 /* SERVICES */
 
-.services{
-    padding:120px 10%;
-}
-
-.services h2{
-    text-align:center;
-    font-size:36px;
-    margin-bottom:60px;
-}
-
 .service-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:40px;
 }
 
 .card{
-    background:white;
-    padding:40px;
-    border-radius:12px;
-    border:1px solid #eee;
-    transition:0.3s;
+padding:40px;
+border-radius:14px;
+background:white;
+border:1px solid #eee;
+transition:.4s;
 }
 
 .card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,.08);
 }
 
-.card h3{
-    margin-bottom:15px;
-    color:#263B6A;
+/* PORTFOLIO */
+
+.portfolio{
+background:var(--bg-gray);
+}
+
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.portfolio-item{
+height:220px;
+border-radius:12px;
+background:#e2e8f0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
+transition:.3s;
+}
+
+.portfolio-item:hover{
+background:var(--blue);
+color:white;
+transform:scale(1.03);
+}
+
+/* TESTIMONIALS */
+
+.testimonials-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:40px;
+}
+
+.testimonial-card{
+background:var(--bg-gray);
+padding:35px;
+border-radius:12px;
+}
+
+.client-name{
+font-weight:700;
+color:var(--green);
+margin-top:10px;
 }
 
 /* CONTACT */
 
 .contact{
-    padding:120px 10%;
-    text-align:center;
-    background:#f8fafc;
-
-}
-
-.contact h2{
-    font-size:36px;
-    margin-bottom:20px;
+text-align:center;
+background:linear-gradient(135deg,var(--bg-gray),white);
 }
 
 /* FOOTER */
 
 footer{
-    text-align:center;
-    padding:30px;
-    background:#263B6A;
-    color:white;
+background:var(--navy);
+color:white;
+padding:80px 10% 30px;
+text-align:center;
 }
 
-/* LOADING SCREEN */
+/* LOADER */
 
-#loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white; /* Back to clean white */
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1.2s cubic-bezier(0.7, 0, 0.3, 1), visibility 1.2s;
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+transition:1s;
 }
 
-.loader-content {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.loader-circle{
+width:60px;
+height:60px;
+border-radius:50%;
+background:linear-gradient(45deg,#ff2a85,#23a6d5,#23d5ab);
+animation:spin 2s linear infinite;
 }
 
-.welcome-text {
-    font-size: 18px;
-    color: var(--blue);
-    font-weight: 400;
-    margin-bottom: -5px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUpFade 0.8s ease-out forwards;
-    animation-delay: 0.2s;
+@keyframes spin{
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
 }
 
-.loader-logo {
-    font-size: 38px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUpFade 0.8s ease-out forwards;
-    animation-delay: 0.5s; 
+/* SCROLL ANIMATION */
+
+.reveal{
+opacity:0;
+transform:translateY(50px);
+transition:1s;
 }
 
-/* SIRI LIKE ORB SPINNER */
-.siri-orb {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: linear-gradient(
-        45deg,
-        #ff2a85,
-        #8a2387,
-        #23d5ab,
-        #23a6d5,
-        #ff2a85
-    );
-    background-size: 300% 300%;
-    opacity: 0;
-    box-shadow: 0 0 20px rgba(138, 35, 135, 0.5); /* Reverted to dark glow for white background */
-    filter: blur(1.5px);
-    animation: fadeIn 0.8s ease-out forwards, siriFlow 3s ease-in-out infinite alternate, spinOrb 6s linear infinite;
-    animation-delay: 0.9s; 
-}
-
-/* KEYFRAMES */
-
-@keyframes slideUpFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes siriFlow {
-    0% { background-position: 0% 50%; border-radius: 50% 50% 50% 50%; transform: scale(0.95); }
-    50% { background-position: 100% 50%; border-radius: 45% 55% 45% 55%; transform: scale(1.05); }
-    100% { background-position: 0% 50%; border-radius: 55% 45% 55% 45%; transform: scale(0.95); }
-}
-
-@keyframes spinOrb {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-body.loading {
-    overflow: hidden;
-}
-.logo img {
-    height: 45px;
-    width: 45px; /* Make width equal to height for a perfect square base */
-    object-fit: cover; /* Ensures the image fills the circle */
-    border-radius: 50%; /* Turns the square into a perfect circle */
+.reveal.active{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
-
 </head>
 
-<body class="loading">
+<body>
 
-<div id="loader-wrapper">
-    <div class="loader-content">
-        <div class="welcome-text">Welcome to</div>
-        <h2 class="loader-logo gradient">Growth Destiny</h2>
-        
-        <div class="siri-orb"></div>
-    </div>
+<div id="loader">
+<div class="loader-circle"></div>
 </div>
 
-<nav>
+<nav id="navbar">
 
-<div class="logo">
-    <img src="logo.jpeg" alt="Growth Destiny Logo">
-    Growth Destiny
-</div>
+<a class="logo" href="#">
+<img src="logo.png" onerror="this.style.display='none'">
+Growth Destiny
+</a>
 
 <ul>
 <li><a href="#">Home</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#services">Services</a></li>
+<li><a href="#portfolio">Work</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 
 </nav>
 
+<section class="hero reveal">
 
-<section class="hero">
 <div>
-<h1>
-Building <span class="gradient">Digital Growth</span><br>
-For Modern Businesses
-</h1>
 
-<p>
-Growth Destiny helps businesses grow online with modern websites,
-engaging social media reels, posters, and powerful digital branding.
-</p>
+<h1>Building <span class="gradient">Digital Growth</span><br>For Modern Businesses</h1>
 
-<a href="#services" class="btn btn-primary">
-View Services
-</a>
+<p>Growth Destiny helps businesses grow online with modern websites, engaging social media reels and powerful digital branding.</p>
 
-<a href="#contact" class="btn btn-outline">
-Start Your Project
-</a>
+<a href="#services" class="btn btn-primary">View Services</a>
+
+<a href="#contact" class="btn btn-outline">Start Your Project</a>
+
 </div>
+
 </section>
 
+<section id="about" class="about section-padding reveal">
 
-<section id="about" class="about">
-<h2>About Growth Destiny</h2>
-<p>
-Growth Destiny is a digital creative studio helping businesses
-build a strong online presence through modern websites,
-high-engagement reels, and powerful visual branding.
-</p>
+<h2 class="section-title">About Growth Destiny</h2>
+
+<p>We create modern websites, viral social media content and powerful brand identities that help businesses grow online.</p>
+
 </section>
 
+<section class="stats reveal">
 
-<section id="services" class="services">
-<h2>Our Services</h2>
+<div>
+<div class="stat-num">150+</div>
+Projects Completed
+</div>
+
+<div>
+<div class="stat-num">98%</div>
+Client Satisfaction
+</div>
+
+<div>
+<div class="stat-num">5M+</div>
+Reel Views
+</div>
+
+</section>
+
+<section id="services" class="section-padding reveal">
+
+<h2 class="section-title">Our Services</h2>
+
 <div class="service-grid">
 
 <div class="card">
 <h3>Website Development</h3>
-<p>Modern responsive websites designed to convert visitors into customers.</p>
+<p>Modern responsive websites optimized for speed and SEO.</p>
 </div>
 
 <div class="card">
 <h3>Social Media Reels</h3>
-<p>High engagement reels that help brands grow faster online.</p>
+<p>Short-form content designed to go viral and grow your audience.</p>
 </div>
 
 <div class="card">
-<h3>Poster Design</h3>
-<p>Creative posters and promotional graphics for your business.</p>
+<h3>Graphic Design</h3>
+<p>Posters, brand kits and high quality visual content.</p>
+</div>
+
+<div class="card">
+<h3>Digital Strategy</h3>
+<p>Growth systems designed to scale your business.</p>
 </div>
 
 </div>
+
 </section>
 
+<section id="portfolio" class="portfolio section-padding reveal">
 
-<section id="contact" class="contact">
-<h2>Let's Build Something Great</h2>
-<p>Have a project in mind? Let's work together.</p>
-<br>
-<a href="mailto:hello@growthdestiny.com" class="btn btn-primary">
-Contact Us
-</a>
+<h2 class="section-title">Our Work</h2>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-item">E-Commerce Website</div>
+
+<div class="portfolio-item">Viral Reel Campaign</div>
+
+<div class="portfolio-item">Brand Identity</div>
+
+<div class="portfolio-item">Landing Page</div>
+
+</div>
+
 </section>
 
+<section id="contact" class="contact section-padding reveal">
+
+<h2 class="section-title">Let's Work Together</h2>
+
+<p>Start your project today.</p>
+
+<a href="mailto:hello@growthdestiny.com" class="btn btn-primary">Contact Us</a>
+
+</section>
 
 <footer>
+
 © 2026 Growth Destiny
+
 </footer>
 
 <script>
-    window.addEventListener('load', () => {
-        const loader = document.getElementById('loader-wrapper');
-        const body = document.body;
-        
-        setTimeout(() => {
-            loader.classList.add('fade-out');
-            body.classList.remove('loading'); 
-        }, 1500); 
-    });
+
+/* Loader */
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0"
+document.getElementById("loader").style.pointerEvents="none"
+},1000)
+
+})
+
+/* Navbar */
+
+window.addEventListener("scroll",()=>{
+
+const nav=document.getElementById("navbar")
+
+if(window.scrollY>50){
+nav.classList.add("scrolled")
+}else{
+nav.classList.remove("scrolled")
+}
+
+})
+
+/* Scroll reveal */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+entry.target.classList.add("active")
+}
+
+})
+
+},{threshold:0.2})
+
+document.querySelectorAll(".reveal").forEach(el=>{
+observer.observe(el)
+})
+
+/* Smooth scroll */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+e.preventDefault()
+
+const target=document.querySelector(this.getAttribute("href"))
+
+window.scrollTo({
+top:target.offsetTop-80,
+behavior:"smooth"
+})
+
+})
+
+})
+
 </script>
 
 </body>
